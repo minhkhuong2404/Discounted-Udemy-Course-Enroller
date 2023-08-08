@@ -7,3 +7,6 @@ pyopenssl
 browser_cookie3
 colorama
 tqdm
+
+python-dotenv
+beautifulsoup4

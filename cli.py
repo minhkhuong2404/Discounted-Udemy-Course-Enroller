@@ -1,10 +1,14 @@
+import os
+import sys
 import traceback
 import threading
 import time
 from tqdm import tqdm
 from base import VERSION, LoginException, Scraper, Udemy, scraper_dict
 from colors import *
+from dotenv import load_dotenv
 
+load_dotenv()
 # DUCE-CLI
 
 
@@ -44,11 +48,11 @@ def scrape():
         udemy.enrol()
 
         print(f"Successfully Enrolled: {udemy.successfully_enrolled_c}")
-        print(f"Amount Saved: {round(udemy.amount_saved_c,2)} {udemy.currency.upper()}")
+        print(f"Amount Saved: {round(udemy.amount_saved_c, 2)} {udemy.currency.upper()}")
         print(f"Already Enrolled: {udemy.already_enrolled_c}")
         print(f"Expired Courses: {udemy.expired_c}")
         print(f"Excluded Courses: {udemy.excluded_c}")
-
+        sys.exit()
     except:
         e = traceback.format_exc()
         print(
@@ -57,6 +61,7 @@ def scrape():
                 e + f"\n\n{udemy.link}\n{udemy.title}" + f"|:|Unknown Error {VERSION}",
             )
         )
+        sys.exit()
 
 
 ##########################################
@@ -70,25 +75,24 @@ if login_title.__contains__("Update"):
 login_error = True
 while login_error:
     try:
-        if udemy.settings["email"] and udemy.settings["password"]:
-            email, password = udemy.settings["email"], udemy.settings["password"]
+        if os.getenv("EMAIL") and os.getenv("PASSWORD"):
+            email, password = os.getenv("EMAIL"), os.getenv("PASSWORD")
         else:
             email = input("Email: ")
             password = input("Password: ")
         print(fb + "Trying to login")
         udemy.manual_login(email, password)
         udemy.get_session_info()
-        udemy.settings["email"], udemy.settings["password"] = email, password
         login_error = False
     except LoginException as e:
         print(fr + str(e))
-        udemy.settings["email"], udemy.settings["password"] = "", ""
     udemy.save_settings()
 
 print(fg + f"Logged in as {udemy.display_name}")
 user_dumb = udemy.is_user_dumb()
 if user_dumb:
     print(bw + fr + "What do you even expect to happen!")
+    sys.exit()
 if not user_dumb:
     scraper = Scraper(udemy.sites)
     scrape()
