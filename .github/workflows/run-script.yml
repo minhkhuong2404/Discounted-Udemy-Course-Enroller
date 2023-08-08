@@ -1,4 +1,4 @@
-name: run script to get new udemy courses every 4 hours
+name: Get new udemy courses every 4 hours
 
 on:
   workflow_dispatch:
@@ -16,13 +16,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Load Cached Virtualenv
-        id: cached-pip-wheels
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache
-          key: venv-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
-
       - name: checkout repo content
         uses: actions/checkout@v3 # checkout the repository content
 
