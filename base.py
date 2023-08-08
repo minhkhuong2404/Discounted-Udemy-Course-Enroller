@@ -266,7 +266,7 @@ class Scraper:
                 soup = bs(r.content, "html5lib")
                 small_all = soup.find_all(
                     "a",
-                    attrs={"class": "button wp-element-button product_type_external"},
+                    attrs={"class": "button product_type_external"},
                 )
                 big_all.extend(small_all)
             self.idc_length = len(big_all)
@@ -365,7 +365,7 @@ class Udemy:
 
     def get_course_id(self, url: str):
         # url="https://www.udemy.com/course/numpy-and-pandas-for-beginners?couponCode=EBEA9308D6497E4A8326"
-        try: 
+        try:
             r = cloudscraper.CloudScraper().get(url)
         except requests.exceptions.ConnectionError:
             return "retry", url
@@ -542,7 +542,7 @@ class Udemy:
             }
         )
         # r = s.get("https://www.udemy.com/join/login-popup/?response_type=json")
-        s = cloudscraper.create_scraper(session=s)
+        s = cloudscraper.create_scraper(sess=s)
         r = s.post(
             "https://www.udemy.com/join/login-popup/?response_type=json",
             data=data,
