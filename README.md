@@ -21,21 +21,6 @@
 - Many more features
 
 
-<h2><details>
-<summary>Screenshots of GUI</summary>
-
-![Login](https://cdn.discordapp.com/attachments/823472016999972884/834051177792274452/unknown.png)
-
-![Cookie Login](https://cdn.discordapp.com/attachments/823472016999972884/834051201342373888/unknown.png)
-
-![Discounted Udemy Course Enroller](https://cdn.discordapp.com/attachments/823472016999972884/834051568554737674/unknown.png)
-
-![Coupon Scraping](https://cdn.discordapp.com/attachments/823472016999972884/834051762255560704/unknown.png)
-
-![Enrolling](https://cdn.discordapp.com/attachments/823472016999972884/824187751075282974/unknown.png)
-</details>
-
-
 ## Disclaimer
 
 ![](https://cdn.discordapp.com/attachments/749247352073617518/785906195767754753/unknown.png)
