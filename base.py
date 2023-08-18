@@ -17,7 +17,6 @@ from colors import *
 
 VERSION = "v2.1"
 
-
 scraper_dict: dict = {
     "Udemy Freebies": "uf",
     "Tutorial Bar": "tb",
@@ -366,9 +365,10 @@ class Udemy:
     def get_course_id(self, url: str):
         # url="https://www.udemy.com/course/numpy-and-pandas-for-beginners?couponCode=EBEA9308D6497E4A8326"
         try:
-            r = cloudscraper.CloudScraper().get(url)
-        except requests.exceptions.ConnectionError:
-            return "retry", url
+            r = cloudscraper.create_scraper().get(
+                url, headers={"User-Agent": "okhttp/4.9.2 UdemyAndroid 8.9.2(499) (phone)"})
+        except requests.exceptions.ConnectionError as e:
+            return "retry", url, e
         soup = bs(r.content, "html5lib")
         try:
             course_id = (
@@ -380,7 +380,7 @@ class Udemy:
             course_id = "retry"
         except IndexError:
             course_id = ""
-        return course_id, r.url
+        return course_id, r.url, "Error"
 
     def extract_course_coupon(self, url: str) -> bool | str:
         """Get coupon code from url
@@ -414,11 +414,11 @@ class Udemy:
         avg_rating: float = round(r["avg_rating_recent"], 1)
 
         if (
-            instructor in self.instructor_exclude
-            or self.keyword_exclusion(title)
-            or cat not in self.categories
-            or lang not in self.languages
-            or avg_rating < self.min_rating
+                instructor in self.instructor_exclude
+                or self.keyword_exclusion(title)
+                or cat not in self.categories
+                or lang not in self.languages
+                or avg_rating < self.min_rating
         ):
             if instructor in self.instructor_exclude:
                 self.print(
@@ -439,7 +439,7 @@ class Udemy:
             return False
 
     def check_course(
-        self, course_id, coupon_id=False
+            self, course_id, coupon_id=False
     ) -> tuple[str | bool, Decimal, bool | str]:
         """Checks Purchase,Coupon,Price
 
@@ -745,10 +745,11 @@ class Udemy:
                 end=" ",
             )
 
-            course_id, self.link = self.get_course_id(self.link)
+            course_id, self.link, self.error_code = self.get_course_id(self.link)
             self.print(self.link, color="blue")
             if course_id == "retry":
-                self.print("Retrying..", color="red")
+                self.print(self.error_code, color="red")
+                self.print("Retrying..: ", color="red")
                 continue
             if course_id:
                 coupon_id = self.extract_course_coupon(self.link)

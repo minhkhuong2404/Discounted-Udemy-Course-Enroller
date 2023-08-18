@@ -1,4 +1,4 @@
-name: Get new udemy courses every 4 hours
+name: Get new udemy courses every 6 hours
 
 on:
   workflow_dispatch:
