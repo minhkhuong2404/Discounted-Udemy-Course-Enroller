@@ -13,40 +13,12 @@
 
 > Software to enroll in available Udemy Paid/Free courses having coupons automatically to your Udemy account.
 
-Everything you need can be on the website.: [duce.techtanic.xyz](https://duce.techtanic.xyz)
-
-
 ## Key Features
 
-- Beautiful GUI.
-- One click login.
+- No GUI, install Python 3 and run the script with command `python3 cli.py`
 - One click to add all available courses with coupons to your udemy account.
 - Uses popular sites for coupons.
 - Many more features
-
-
-# Downloads
-
-<table>
-<thead >
-  <tr>
-    <th style="text-align: center">GUI</th>
-    <th style="text-align: center">CLI</th>
-  </tr>
-</thead>
-<tbody>
-  <tr align="center">
-    <td><a href="https://github.com/techtanic/Discounted-Udemy-Course-Enroller/releases/latest/download/DUCE-GUI-windows.exe">
-         <img alt="GUI Windows exe" src="https://img.shields.io/static/v1?message=Download&logo=windows&labelColor=5c5c5c&color=1182c3&label=%20&style=for-the-badge"
-         >
-      </a></td>
-    <td><a href="https://github.com/techtanic/Discounted-Udemy-Course-Enroller/releases/latest/download/DUCE-CLI-windows.exe">
-         <img alt="CLI Windows exe" src="https://img.shields.io/static/v1?message=Download&logo=windows&labelColor=5c5c5c&color=1182c3&label=%20&style=for-the-badge">
-      </a></td>
-    
-  </tr>
-</tbody>
-</table>
 
 
 <h2><details>
@@ -67,9 +39,3 @@ Everything you need can be on the website.: [duce.techtanic.xyz](https://duce.te
 ## Disclaimer
 
 ![](https://cdn.discordapp.com/attachments/749247352073617518/785906195767754753/unknown.png)
-
-## Donate
-
-BTC `bc1qdyjwj0eqxjk5hxejah4gyclrumwtqs3hqp63uz`
-
-BTC `14JNjiNoiKcbCHcxcqUxgJcVgyDfhGbxQF`
