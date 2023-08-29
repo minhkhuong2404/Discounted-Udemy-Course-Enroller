@@ -2,6 +2,7 @@
 .env
 test/
 Courses/
+venv/
 /build
 /dist
 p_test.py
