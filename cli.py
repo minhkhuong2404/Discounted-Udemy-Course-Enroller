@@ -86,6 +86,7 @@ while login_error:
         login_error = False
     except LoginException as e:
         print(fr + str(e))
+        login_error = False
     udemy.save_settings()
 
 print(fg + f"Logged in as {udemy.display_name}")
