@@ -37,7 +37,7 @@
         "Urdu": true
     },
     "sites": {
-        "Discudemy": true,
+        "Discudemy": false,
         "Udemy Freebies": false,
         "Tutorial Bar": true,
         "Real Discount": true,
