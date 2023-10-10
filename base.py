@@ -94,7 +94,7 @@ class Scraper:
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             }
 
-            for page in range(1, 4):
+            for page in range(1, 8):
                 r = requests.get(
                     "https://www.discudemy.com/all/" + str(page), headers=head
                 )
@@ -109,7 +109,7 @@ class Scraper:
                 r = requests.get("https://www.discudemy.com/go/" + url, headers=head)
                 soup = bs(r.content, "html5lib")
                 self.du_links.append(
-                    title + "|:|" + soup.find("a", id="couponLink").string
+                    title + "|:|" + soup.find("a", text=re.compile("https://www.udemy.com/course")).string
                 )
 
         except:
@@ -121,7 +121,7 @@ class Scraper:
         try:
             big_all = []
 
-            for page in range(1, 3):
+            for page in range(1, 4):
                 r = requests.get(
                     "https://www.udemyfreebies.com/free-udemy-courses/" + str(page)
                 )
@@ -290,12 +290,12 @@ class Scraper:
             r = requests.get(
                 "https://jobs.e-next.in/public/assets/data/udemy.json"
             ).json()
-            big_all = r
+            big_all = r[0:50]
             self.en_length = len(big_all)
             for index, item in enumerate(big_all):
                 self.en_progress = index
                 title = item["title"]
-                link = item["site"]
+                link = "https://udemy.com/course/" + item["url"] + "/?couponCode=" + item["code"]
                 self.en_links.append(title + "|:|" + link)
 
         except:
