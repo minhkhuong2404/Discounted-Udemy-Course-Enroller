@@ -121,7 +121,7 @@ class Scraper:
         try:
             big_all = []
 
-            for page in range(1, 4):
+            for page in range(1, 3):
                 r = requests.get(
                     "https://www.udemyfreebies.com/free-udemy-courses/" + str(page)
                 )
