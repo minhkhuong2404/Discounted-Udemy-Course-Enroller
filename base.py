@@ -6,7 +6,7 @@ import threading
 import time
 import traceback
 from decimal import Decimal
-from urllib.parse import parse_qs, unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlparse, urlsplit
 
 import browser_cookie3
 import cloudscraper
@@ -109,7 +109,7 @@ class Scraper:
                 r = requests.get("https://www.discudemy.com/go/" + url, headers=head)
                 soup = bs(r.content, "html5lib")
                 self.du_links.append(
-                    title + "|:|" + soup.find("a", text=re.compile("https://www.udemy.com/course")).string
+                    title + "|:|" + soup.find("a", text=re.compile(r"https://www\.udemy\.com/course")).string
                 )
 
         except:
@@ -166,7 +166,8 @@ class Scraper:
                 r = requests.get(url)
                 soup = bs(r.content, "html5lib")
                 link = soup.find("a", class_="btn_offer_block re_track_btn")["href"]
-                if "www.udemy.com" in link:
+                parsed_link = urlparse(link)
+                if parsed_link.netloc == "udemy.com":
                     self.tb_links.append(title + "|:|" + link)
 
         except:
@@ -204,9 +205,10 @@ class Scraper:
                 self.rd_progress = index
                 title = item["name"]
                 link = item["url"]
-                if link.startswith("https://click.linksynergy.com"):
+                parsed_link = urlparse(link)
+                if parsed_link.netloc == "click.linksynergy.com":
                     try:
-                        link = link.split("murl=")[1]
+                        link = link.split("RD_PARAM1=")[1]
                     except:
                         continue
                 self.rd_links.append(title + "|:|" + link)
@@ -276,7 +278,8 @@ class Scraper:
                 title = item["aria-label"][5:][:-1].strip()
                 r = requests.get(item["href"], allow_redirects=False)
                 link = unquote(r.headers["Location"])
-                if link.startswith("https://click.linksynergy.com"):
+                parsed_link = urlparse(link)
+                if parsed_link.netloc == "click.linksynergy.com":
                     link = link.split("murl=")[1]
                 else:
                     print(link)
