@@ -43,7 +43,7 @@
         "Real Discount": true,
         "Course Vania": false,
         "IDownloadCoupons": true,
-        "E-next": true
+        "E-next": false
     },
     "min_rating": 0.0,
     "instructor_exclude": [

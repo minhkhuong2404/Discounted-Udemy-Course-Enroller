@@ -94,7 +94,7 @@ class Scraper:
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             }
 
-            for page in range(1, 4):
+            for page in range(1, 3):
                 r = requests.get(
                     "https://www.discudemy.com/all/" + str(page), headers=head
                 )
@@ -129,6 +129,7 @@ class Scraper:
                 small_all = soup.find_all("a", {"class": "theme-img"})
                 big_all.extend(small_all)
             self.uf_length = len(big_all)
+            self.uf_links = []
 
             for index, item in enumerate(big_all):
                 self.uf_progress = index
@@ -259,7 +260,7 @@ class Scraper:
             big_all = []
             for page in range(1, 6):
                 r = requests.get(
-                    "https://idownloadcoupon.com/product-category/udemy/page/"
+                    "https://idownloadcoupon.com/page/"
                     + str(page)
                 )
                 soup = bs(r.content, "html5lib")
@@ -292,6 +293,7 @@ class Scraper:
             ).json()
             big_all = r[0:50]
             self.en_length = len(big_all)
+            self.en_links = []
             for index, item in enumerate(big_all):
                 self.en_progress = index
                 title = item["title"]
