@@ -39,7 +39,7 @@
     "sites": {
         "Discudemy": true,
         "Udemy Freebies": true,
-        "Tutorial Bar": false,
+        "Tutorial Bar": true,
         "Real Discount": true,
         "Course Vania": false,
         "IDownloadCoupons": true,
