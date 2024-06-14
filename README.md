@@ -13,4 +13,10 @@
 - Install Python 3
 - Download the script
 - Install dependencies with command `pip3 install -r requirements.txt`
+- Create a new .env file in the same directory as the script
+- Add the following lines to the .env file
+```
+EMAIL=your_email
+PASSWORD=your_password
+```
 - Run the script with command `python3 cli.py`
