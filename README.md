@@ -11,12 +11,15 @@
 
 ## How to use
 - Install Python 3
-- Download the script
+- Clone the repo and navigate to the directory
 - Install dependencies with command `pip3 install -r requirements.txt`
-- Create a new .env file in the same directory as the script
+- Create a new file called ".env" in the same directory as the repo, remember to add the dot before the name.
 - Add the following lines to the .env file
 ```
 EMAIL=your_email
 PASSWORD=your_password
 ```
-- Run the script with command `python3 cli.py`
+- Replace `your_email` and `your_password` with your Udemy account email and password.
+- Run the script with command `python3 cli.py` or `python cli.py`
+- Wait for the script to finish, it will automatically enroll in all available courses with coupons.
+- Enjoy learning!
