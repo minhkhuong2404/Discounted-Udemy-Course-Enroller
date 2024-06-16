@@ -21,5 +21,7 @@ PASSWORD=your_password
 ```
 - Replace `your_email` and `your_password` with your Udemy account email and password.
 - Run the script with command `python3 cli.py` or `python cli.py`
+- If you don't create .env file or don't add the EMAIL and PASSWORD, the script will ask for your email and password.
+- Just enter your email and password and press enter.
 - Wait for the script to finish, it will automatically enroll in all available courses with coupons.
 - Enjoy learning!
