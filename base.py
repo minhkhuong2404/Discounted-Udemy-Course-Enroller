@@ -647,31 +647,23 @@ class Udemy:
         return not all([bool(self.sites), bool(self.categories), bool(self.languages)])
 
     def free_checkout(self, coupon: str, courseid: int):
-        payload = {
-            "checkout_environment": "Marketplace",
-            "checkout_event": "Submit",
-            "shopping_info": {
-                "items": [
-                    {
-                        "discountInfo": {"code": coupon},
-                        "buyable": {"type": "course", "id": courseid},
-                        "price": {"amount": 0, "currency": self.currency.upper()},
-                    }
-                ]
-            },
-            "payment_info": {
-                "method_id": "0",
-                "payment_vendor": "Free",
-                "payment_method": "free-method",
-            },
-        }
+        payload = {"checkout_environment": "Marketplace", "checkout_event": "Submit", "shopping_info": {"items": [
+            {"discountInfo": {"code": f"{coupon}"}, "price": {"amount": 0, "currency": f"{self.currency.upper()}"},
+             "buyable": {"id": f"{courseid}", "type": "course"}}], "is_cart": False},
+                     "payment_info": {"method_id": "0", "payment_vendor": "Free", "payment_method": "free-method"},
+                     "tax_info": {"tax_rate": 5,
+                                  "billing_location": {"country_code": "VN", "secondary_location_info": None},
+                                  "currency_code": f"{self.currency.upper()}", "transaction_items": [
+                             {"tax_included_amount": 0, "tax_excluded_amount": 0, "tax_amount": 0,
+                              "udemy_txn_item_reference": f"course-{courseid}", "quantity": 1}],
+                                  "tax_breakdown_type": "tax_inclusive"}}
 
         # payload = json.dumps(payload)
 
         r = self.client.post(
             "https://www.udemy.com/payment/checkout-submit/",
             json=payload,
-            verify=False,
+            verify=True,
         )
         try:
             r = r.json()
