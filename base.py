@@ -647,8 +647,6 @@ class Udemy:
         return not all([bool(self.sites), bool(self.categories), bool(self.languages)])
 
     def free_checkout(self, coupon: str, courseid: int):
-        print(f"free checkout: course: {courseid}, coupon: {coupon}")
-
         payload = {"checkout_environment": "Marketplace", "checkout_event": "Submit", "shopping_info": {"items": [
             {"discountInfo": {"code": f"{coupon}"}, "price": {"amount": 0, "currency": f"{self.currency.upper()}"},
              "buyable": {"id": f"{courseid}", "type": "course"}}], "is_cart": False},
